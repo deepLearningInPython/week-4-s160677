@@ -97,27 +97,30 @@ print(word_frequencies)
 # Modify the comprehension to include only words that appear more than once.
 # -----------------------------------------------
 word_frequencies_more_than_once = {word: count for word, count in word_frequencies.items() if count > 1}
-
+print(word_frequencies_more_than_once)
 
 # Task 4: Define a function that takes a string and an integer k, and returns a dictionary with
 #   the token frequencies of only those tokens that occur more than k times in the string.
 
 # Your code here:
 # -----------------------------------------------
+def tokenize(string: str) -> list:
+    #define punctuation terms
+    punctuation = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"
+    
+    #tokenize string and removes punctuation 
+    tokens = [word.strip(punctuation).lower() for word in string.split()]
+
+    #return tokens in alphabetical order
+    return tokens
+
 def token_counts(string: str, k: int = 1) -> dict:
     
     #tokenize the string
-    tokenize(string)
-
-    #store word frequencies 
-    word_frequencies = {}
-    for word in tokens: 
-        word_frequencies[word] = word_frequencies.get(word, 0) + 1
+    tokenized = tokenize(string)
     
-    #filter only ones that occur more than k time
-    filtered_frequencies = {word: count for word, count in word_frequencies.items() if count > k}
-
-    return filtered_frequencies
+    #filter only ones that occur equal to or more than k times
+    return {word: tokenized.count(word) for word in tokenized if tokenized.count(word) >= k}
 
 # test:
 text_hist = {'the': 2, 'quick': 1, 'brown': 1, 'fox': 1, 'jumps': 1, 'over': 1, 'lazy': 1, 'dog': 1}
