@@ -184,18 +184,18 @@ assert all(id_to_token[token_to_id[key]]==key for key in token_to_id) and all(to
 # Your code here:
 # -----------------------------------------------
 def make_vocabulary_map(documents: list) -> tuple:
-    # Step 1: Tokenize all documents and gather unique tokens
+    # Tokenize all documents and gather unique tokens
     all_tokens = []
     for document in documents:
         all_tokens.extend(tokenize(document))
     
-    # Step 2: Get unique tokens (remove duplicates)
+    # Get unique tokens (remove duplicates)
     unique_tokens = set(all_tokens)
     
-    # Step 3: Create token2int dictionary (token -> unique integer ID)
+    # Create token2int dictionary (token -> unique integer ID)
     token2int = {token: idx for idx, token in enumerate(unique_tokens)}
     
-    # Step 4: Create int2token dictionary (integer ID -> token)
+    # Create int2token dictionary (integer ID -> token)
     int2token = {idx: token for token, idx in token2int.items()}
     
     return token2int, int2token
@@ -217,15 +217,15 @@ all(i2t[t2i[tok]] == tok for tok in t2i) # should be True
 # Your code here: 
 # -----------------------------------------------
 def tokenize_and_encode(documents: list):
-    # Step 1: Tokenize all documents using the tokenize function
+    # Tokenize all documents using the tokenize function
     all_tokens = []
     for document in documents:
         all_tokens.extend(tokenize(document))  # Tokenize each document and extend the list
     
-    # Step 2: Create token2id and id2token dictionaries
+    # Create token2id and id2token dictionaries
     token_to_id, id_to_token = make_vocabulary_map(documents)
     
-    # Step 3: Encode each document by converting tokens to their integer IDs
+    # Encode each document by converting tokens to their integer IDs
     encoded_documents = []
     for document in documents:
         # Tokenize the document
